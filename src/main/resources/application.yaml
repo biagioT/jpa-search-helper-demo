@@ -1,0 +1,96 @@
+spring:
+  docker:
+    compose:
+      enabled: true
+      file: ./docker/docker-compose.yml
+  sql:
+    init:
+      mode: always
+      platform: h2
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        generate_statistics: true
+        show_sql: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: jpa-search-helper-user
+    password: jpa-search-helper-password
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  application:
+    name: jpa-search-helper-demo
+
+management:
+  observations:
+    annotations:
+      enabled: true
+    key-values:
+      application: ${spring.application.name}
+      env: local
+  otlp:
+    tracing:
+      endpoint: "http://localhost:4318/v1/traces"
+      compression: gzip
+      timeout: 20s
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1
+  metrics:
+    distribution:
+      percentiles:
+        - 0.95
+      percentiles-histogram:
+        all: true
+        http:
+          server:
+            requests: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+        step: 1m
+  endpoints:
+    enabled-by-default: false
+    jmx:
+      exposure:
+        exclude: '*'
+    web:
+      exposure:
+        include:
+          - health
+          - prometheus
+          - metrics
+  endpoint:
+    health:
+      enabled: true
+      logging:
+        slow-indicator: 5s
+      probes:
+        enabled: true
+    info:
+      enabled: false
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+  health:
+    defaults:
+      enabled: false
+    db:
+      enabled: true
+
+logging:
+  level:
+    org:
+      hibernate: DEBUG
+
