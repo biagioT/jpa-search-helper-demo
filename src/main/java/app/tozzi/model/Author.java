@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 @Builder
 public class Author {
 
+    @Searchable
     private Long id;
 
     @Searchable(entityFieldKey = "authors.fullName")
