@@ -4,7 +4,6 @@ import app.tozzi.manager.BookManager;
 import app.tozzi.model.Author;
 import app.tozzi.model.Book;
 import app.tozzi.model.input.JPASearchInput;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +33,6 @@ public class BookControllerTest {
     @MockBean
     private BookManager bookManager;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     private static final String PATH = "/books";
 
     @BeforeEach
@@ -57,6 +53,49 @@ public class BookControllerTest {
         when(bookManager.findBooks(any(JPASearchInput.class))).thenReturn(List.of(b1, b2));
     }
 
+    private static final String JSON_INPUT = """
+            {
+                "filter": {
+                    "operator": "or",
+                    "filters": [
+                        {
+                            "operator": "eq",
+                            "value": "1034567890123456",
+                            "key": "isbn"
+                        },
+                        {
+                            "operator": "in",
+                            "values": [
+                                "1034567890123456",
+                                "1234567890123456"
+                            ],
+                            "key": "isbn"
+                        },
+                        {
+                            "operator": "and",
+                            "filters": [
+                                {
+                                    "operator": "null",
+                                    "key": "title",
+                                    "options": {
+                                        "negate": false
+                                    }
+                                },
+                                {
+                                    "operator": "lt",
+                                    "key": "pages",
+                                    "value": 10
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "options": {
+                    "pageSize": 4
+                }
+            }
+            """;
+
     @Test
     void findGet() throws Exception {
         mvc.perform(get(PATH + "?isbn_eq=1234567891234567"))
@@ -67,7 +106,7 @@ public class BookControllerTest {
     @Test
     void findPost() throws Exception {
         mvc.perform(post(PATH)
-                        .content(objectMapper.writeValueAsString(new JPASearchInput()))
+                        .content(JSON_INPUT)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
