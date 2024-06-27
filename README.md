@@ -15,6 +15,12 @@ Note: the search requires pagination: it is mandatory to set _pageSize_ or __lim
 curl --location 'http://localhost:8080/books?copiesSold_lte=500&_limit=10'
 ```
 
+or 
+
+```bash
+curl --location 'http://localhost:8080/books?_limit=10&authors.name_contains=John'
+```
+
 **Mode 2**
 ```bash
 curl --location 'http://localhost:8080/books' \
