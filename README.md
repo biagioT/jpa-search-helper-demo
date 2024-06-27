@@ -12,7 +12,7 @@ Note: the search requires pagination: it is mandatory to set _pageSize_ or __lim
 **Mode 1**
 
 ```bash
-curl --location 'http://localhost:8080/books?copiesSold_lte=500&pageSize=10'
+curl --location 'http://localhost:8080/books?copiesSold_lte=500&_limit=10'
 ```
 
 **Mode 2**
