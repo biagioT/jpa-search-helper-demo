@@ -19,7 +19,7 @@ repositories {
 
 dependencies {
 	// jpa-search-helper
-	implementation 'app.tozzi:jpa-search-helper:2.0.5'
+	implementation 'app.tozzi:jpa-search-helper:2.0.6'
 
 	// Spring Boot dependencies
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
