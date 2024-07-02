@@ -36,8 +36,8 @@ public class SQLInjectionTests {
             "' AND 1=2",
             "'; DROP TABLE BOOKS; --",
             "'; SELECT * FROM BOOKS; --",
-            "' UNION SELECT null\\,null --",
-            "' UNION SELECT 1\\,2\\,3\\,4 --"
+            "' UNION SELECT null/,null --",
+            "' UNION SELECT 1/,2/,3/,4 --"
     );
 
 
