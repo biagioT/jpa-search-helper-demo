@@ -1,13 +1,18 @@
 Spring Boot demo project for [JPA Search Helper](https://github.com/biagioT/jpa-search-helper/tree/main)
 
+
+Start the application and try it:
+```bash
+./gradlew bootRun
+```
+
 - OpenAPI/Swagger: http://localhost:8080/swagger-ui/index.html
 - Grafana: http://localhost:3000
   - Spring Boot dashboard: http://localhost:3000/dashboards
   - Prometheus & Tempo: http://localhost:3000/explore
 
-Note: the search requires pagination: it is mandatory to set _pageSize_ or __limit_ depending on the endpoint.
-
 ### Examples:
+Note: the search requires pagination: it is mandatory to set _pageSize_ or __limit_ depending on the endpoint.
 
 **Mode 1**
 
