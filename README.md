@@ -71,3 +71,29 @@ curl --location 'http://localhost:8080/books' \
     }
 }'
 ```
+
+**Projection**
+
+GraphQL query on http://localhost:8080/graphql
+
+```graphql
+query {
+
+    projection(filters : [
+
+      { key: "isbn_in", value: "1234567890123456,2234567890123456" }
+
+    ]) {
+
+        isbn
+        authors {
+            name
+            genres {
+                description
+            }
+        }
+
+    }
+
+}
+```

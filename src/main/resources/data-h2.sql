@@ -25,7 +25,8 @@ INSERT INTO BOOKS (ISBN, TITLE, PAGES, PUB_DATE) VALUES
 ('7234567890123456', 'Tales of the Forgotten', 450, '2023-07-01'),
 ('8234567890123456', 'Whispers in the Wind', 500, '2023-08-01'),
 ('9234567890123456', 'Echoes of the Past', 550, '2023-09-01'),
-('1034567890123456', 'Dreams, Hopes, and Realities', 600, '2023-10-01');
+('1034567890123456', 'Dreams, Hopes, and Realities', 600, '2023-10-01'),
+('1234567890000000', 'A book without author!', 12, '2024-10-29');
 
 INSERT INTO BOOK_AUTHOR (BOOK_ID, AUTHOR_ID) VALUES
 (1, 1),
@@ -95,3 +96,28 @@ INSERT INTO SALES (BOOK_ID, PRICE, CHANNEL) VALUES
 (10, 56.99, 'Ecommerce'),
 (10, 58.99, 'Store'),
 (10, 59.99, 'Store');
+
+INSERT INTO GENRES (DESCRIPTION) VALUES
+('Fantasy'),
+('Mystery'),
+('Romance'),
+('Adventure'),
+('Science Fiction'),
+('Non-Fiction'),
+('Historical Fiction'),
+('Thriller'),
+('Self-Help'),
+('Biography');
+
+INSERT INTO AUTHORS_GENRES (AUTHOR_ID, GENRE_ID) VALUES
+(1, 1),
+(1, 3),
+(2, 2),
+(3, 4),
+(4, 5),
+(5, 6),
+(6, 1),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10);

@@ -1,0 +1,20 @@
+type Genre {
+    id: ID!
+    description: String
+}
+
+type Author {
+    id: ID!
+    name: String
+    genres: [Genre]
+}
+
+type Book {
+    isbn: String!
+    title: String
+    pages: Int
+    publicationDate: String
+    authors: [Author]
+    copiesSold: Int
+    averageSellingPrice: Float
+}

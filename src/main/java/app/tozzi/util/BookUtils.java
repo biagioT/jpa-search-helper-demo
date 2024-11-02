@@ -2,8 +2,10 @@ package app.tozzi.util;
 
 import app.tozzi.model.Author;
 import app.tozzi.model.Book;
+import app.tozzi.model.Genre;
 import app.tozzi.repository.entity.AuthorEntity;
 import app.tozzi.repository.entity.BookEntity;
+import app.tozzi.repository.entity.GenresEntity;
 
 public class BookUtils {
 
@@ -23,6 +25,14 @@ public class BookUtils {
         return Author.builder()
                 .id(authorEntity.getId())
                 .name(authorEntity.getFullName())
+                .genres(authorEntity.getGenres().stream().map(BookUtils::toGenre).toList())
+                .build();
+    }
+
+    public static Genre toGenre(GenresEntity genresEntity) {
+        return Genre.builder()
+                .id(genresEntity.getId())
+                .description(genresEntity.getDescription())
                 .build();
     }
 

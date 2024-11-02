@@ -1,5 +1,6 @@
 package app.tozzi.controller;
 
+import app.tozzi.manager.BookDataFetcher;
 import app.tozzi.manager.BookManager;
 import app.tozzi.model.Book;
 import app.tozzi.model.input.JPASearchInput;
@@ -28,7 +29,10 @@ public class BookController {
     @Autowired
     private BookManager bookManager;
 
-    @Operation(operationId = "findBookGet", summary = "Books", description = "Find books Paginated.", tags = {"Books"}, responses = {
+    @Autowired
+    private BookDataFetcher bookDataFetcher;
+
+    @Operation(operationId = "mode1", summary = "Books", description = "Find books. Paginated.", tags = {"Books"}, responses = {
             @ApiResponse(responseCode = "200", description = "Books", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = Book.class)))),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ProblemDetail.class)))
     })
@@ -37,7 +41,7 @@ public class BookController {
         return bookManager.findBooks(requestParams);
     }
 
-    @Operation(operationId = "findBookPost", summary = "Books", description = "Find books. Paginated.", tags = {"Books"}, responses = {
+    @Operation(operationId = "mode2", summary = "Books", description = "Find books. Paginated.", tags = {"Books"}, responses = {
             @ApiResponse(responseCode = "200", description = "Books", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = Book.class)))),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ProblemDetail.class)))
     })
