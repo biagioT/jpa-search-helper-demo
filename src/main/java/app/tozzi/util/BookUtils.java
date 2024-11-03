@@ -21,7 +21,7 @@ public class BookUtils {
                 .build();
     }
 
-    public static Author toAuthor(AuthorEntity authorEntity) {
+    private static Author toAuthor(AuthorEntity authorEntity) {
         return Author.builder()
                 .id(authorEntity.getId())
                 .name(authorEntity.getFullName())
@@ -29,7 +29,7 @@ public class BookUtils {
                 .build();
     }
 
-    public static Genre toGenre(GenresEntity genresEntity) {
+    private static Genre toGenre(GenresEntity genresEntity) {
         return Genre.builder()
                 .id(genresEntity.getId())
                 .description(genresEntity.getDescription())

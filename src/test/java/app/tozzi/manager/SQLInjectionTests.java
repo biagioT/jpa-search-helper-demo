@@ -17,7 +17,7 @@ public class SQLInjectionTests {
     @Autowired
     private BookManager bookManager;
 
-    private static List<String> MALICIOUS_VALUES = List.of(
+    private static final List<String> MALICIOUS_VALUES = List.of(
             "' OR '1'='1",
             "' OR '1'='1' --",
             "' OR '1'='1' /*",
@@ -43,7 +43,6 @@ public class SQLInjectionTests {
 
     @Test
     public void sqlInjectionTests1() {
-
         MALICIOUS_VALUES.forEach(mv -> {
             var res = bookManager.findBooks(Map.of("title", mv, "_limit", "100"));
             assertTrue(res.isEmpty());
@@ -53,7 +52,6 @@ public class SQLInjectionTests {
 
     @Test
     public void sqlInjectionTests2() {
-
         MALICIOUS_VALUES.forEach(mv -> {
             var input = new JPASearchInput();
             input.setOptions(new JPASearchInput.JPASearchOptions());

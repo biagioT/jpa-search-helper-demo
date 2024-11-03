@@ -4,15 +4,15 @@ import app.tozzi.annotation.NestedProjectable;
 import app.tozzi.annotation.NestedSearchable;
 import app.tozzi.annotation.Projectable;
 import app.tozzi.annotation.Searchable;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.List;
 
 @Data
 @EqualsAndHashCode(of = {"id"})
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Author {
 
     @Searchable

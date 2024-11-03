@@ -1,4 +1,4 @@
-package app.tozzi.manager;
+package app.tozzi.datafetcher;
 
 import app.tozzi.model.Book;
 import app.tozzi.repository.BookRepository;
@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,18 +35,15 @@ public class BookDataFetcher {
             filters = new ArrayList<>();
         }
 
-        Map<String, String> filterMap = filters.stream()
-                .collect(Collectors.toMap(Filter::getKey, Filter::getValue));
-
+        var filterMap = filters.stream().collect(Collectors.toMap(Filter::getKey, Filter::getValue));
         filterMap.put("selections", String.join(",", getSelections(dgsDataFetchingEnvironment.getSelectionSet())));
+
         var mapList = bookRepository.projection(filterMap, Book.class, BookEntity.class);
-        List<BookEntity> entities = objectMapper.convertValue(mapList, new TypeReference<>() {
-        });
+        var entities = objectMapper.convertValue(mapList, new TypeReference<List<BookEntity>>() {});
         return entities.stream().map(BookUtils::toBook).toList();
     }
 
     private static Set<String> getSelections(DataFetchingFieldSelectionSet selectionSet) {
-
         return selectionSet.getFields().stream().filter(field -> field.getSelectionSet() == null || field.getSelectionSet().getImmediateFields().isEmpty())
                 .map(field -> field.getQualifiedName().replace("/", ".")).collect(Collectors.toSet());
     }

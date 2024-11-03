@@ -4,11 +4,7 @@ import app.tozzi.annotation.NestedProjectable;
 import app.tozzi.annotation.NestedSearchable;
 import app.tozzi.annotation.Projectable;
 import app.tozzi.annotation.Searchable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -18,7 +14,7 @@ import java.util.List;
 @EqualsAndHashCode(of = "isbn")
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder(toBuilder = true)
+@Builder
 public class Book {
 
     @Projectable

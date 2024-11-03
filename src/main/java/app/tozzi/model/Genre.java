@@ -2,13 +2,13 @@ package app.tozzi.model;
 
 import app.tozzi.annotation.Projectable;
 import app.tozzi.annotation.Searchable;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 @Data
 @EqualsAndHashCode(of = {"id"})
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Genre {
 
     @Searchable
