@@ -7,6 +7,7 @@ Start the application and try it:
 ```
 
 - OpenAPI/Swagger: http://localhost:8080/swagger-ui/index.html
+- GraphiQL: http://localhost:8080/graphiql
 - Grafana: http://localhost:3000
   - Spring Boot dashboard: http://localhost:3000/dashboards
   - Prometheus & Tempo: http://localhost:3000/explore

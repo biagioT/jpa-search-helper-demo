@@ -9,6 +9,7 @@ import org.hibernate.annotations.NaturalId;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -52,4 +53,17 @@ public class BookEntity {
     @Formula("(SELECT AVG(s.PRICE) FROM SALES s WHERE s.book_id = id)")
     private BigDecimal avgPrice;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        var that = (BookEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }

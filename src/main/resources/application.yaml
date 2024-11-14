@@ -94,3 +94,18 @@ logging:
     org:
       hibernate: DEBUG
 
+dgs:
+  graphql:
+    virtualthreads:
+      enabled: true
+
+server:
+  compression:
+    enabled: true
+    min-response-size: 10KB
+  servlet:
+    encoding:
+      charset: UTF-8
+      force-request: true
+      force-response: true
+  shutdown: graceful

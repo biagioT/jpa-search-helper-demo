@@ -25,7 +25,7 @@ dependencyManagement {
 
 dependencies {
     // jpa-search-helper
-    implementation 'app.tozzi:jpa-search-helper:3.2.1'
+    implementation 'app.tozzi:jpa-search-helper:3.2.2'
 
     // Spring Boot dependencies
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -47,6 +47,9 @@ dependencies {
     implementation 'io.micrometer:micrometer-tracing-bridge-otel'
     implementation 'io.opentelemetry:opentelemetry-exporter-otlp'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+    runtimeOnly 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-micrometer'
+
+    // Dev
     developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
 
     // DB
@@ -55,6 +58,7 @@ dependencies {
     // Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter-test'
 }
 
 tasks.named('test') {

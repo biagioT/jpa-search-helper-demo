@@ -40,7 +40,7 @@ public class BookUtilsUnitTest {
         g1.setDescription("Fantasy");
 
         GenresEntity g2 = new GenresEntity();
-        g2.setId(1L);
+        g2.setId(2L);
         g2.setDescription("Horror");
 
         a1.getGenres().add(g1);

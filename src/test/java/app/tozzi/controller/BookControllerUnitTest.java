@@ -98,7 +98,7 @@ public class BookControllerUnitTest {
         mvc.perform(get(PATH + "?isbn_eq=1234567891234567")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
+                .andExpect(content().contentType("application/json;charset=UTF-8"));
         verify(bookManager, times(1)).findBooks(anyMap());
     }
 
@@ -122,7 +122,7 @@ public class BookControllerUnitTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
+                .andExpect(content().contentType("application/json;charset=UTF-8"));
         verify(bookManager, times(1)).findBooks(any(JPASearchInput.class));
     }
 

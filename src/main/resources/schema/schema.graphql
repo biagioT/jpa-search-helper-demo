@@ -1,5 +1,6 @@
 type Query {
 
+    # Advanced search with projection
     projection(filters: [Filter]): [Book]
 
 }
