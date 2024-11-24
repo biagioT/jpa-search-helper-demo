@@ -38,9 +38,12 @@ management:
       env: local
   otlp:
     tracing:
-      endpoint: "http://localhost:4318/v1/traces"
+      export:
+        enabled: true
+      endpoint: "http://localhost:4317"
       compression: gzip
       timeout: 20s
+      transport: grpc
   tracing:
     enabled: true
     sampling:
@@ -60,7 +63,8 @@ management:
         enabled: true
         step: 1m
   endpoints:
-    enabled-by-default: false
+    access:
+      default: none
     jmx:
       exposure:
         exclude: '*'
@@ -72,17 +76,17 @@ management:
           - metrics
   endpoint:
     health:
-      enabled: true
+      access: unrestricted
       logging:
         slow-indicator: 5s
       probes:
         enabled: true
     info:
-      enabled: false
+      access: none
     prometheus:
-      enabled: true
+      access: unrestricted
     metrics:
-      enabled: true
+      access: unrestricted
   health:
     defaults:
       enabled: false

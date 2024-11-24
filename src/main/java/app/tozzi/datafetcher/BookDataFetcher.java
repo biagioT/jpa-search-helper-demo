@@ -11,6 +11,7 @@ import com.netflix.graphql.dgs.DgsDataFetchingEnvironment;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import graphql.schema.DataFetchingFieldSelectionSet;
+import io.micrometer.observation.annotation.Observed;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,6 +21,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @DgsComponent
+@Observed(name = "books", contextualName = "data-fetcher")
 public class BookDataFetcher {
 
     @Autowired
