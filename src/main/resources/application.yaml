@@ -37,6 +37,9 @@ management:
       application: ${spring.application.name}
       env: local
   otlp:
+    metrics:
+      export:
+        enabled: false
     tracing:
       export:
         enabled: true
@@ -49,6 +52,19 @@ management:
     sampling:
       probability: 1
   metrics:
+    dgs-graphql:
+      enabled: true
+      tag-customizers:
+        outcome:
+          enabled: true
+      data-loader-instrumentation:
+        enabled: true
+      query:
+        enabled: true
+      query-signature:
+        enabled: true
+        caching:
+          enabled: true
     distribution:
       percentiles:
         - 0.95
