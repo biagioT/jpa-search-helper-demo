@@ -41,7 +41,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     // Open API
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.5'
 
     // Observability
     implementation 'io.micrometer:micrometer-tracing-bridge-otel'
