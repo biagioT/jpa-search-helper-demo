@@ -49,8 +49,11 @@ public class BookRepositoryTest {
         input.getFilter().getFilters().add(f1);
         input.getFilter().getFilters().add(f2);
         input.setOptions(new JPASearchInput.JPASearchOptions());
-        input.getOptions().setSortKey("isbn");
-        input.getOptions().setSortDesc(true);
+        input.getOptions().setSortOptions(new ArrayList<>());
+        var sortOption = new JPASearchInput.JPASortOptions();
+        sortOption.setKey("isbn");
+        sortOption.setDesc(true);
+        input.getOptions().getSortOptions().add(sortOption);
 
         var books = bookRepository.findAllSorted(input, Book.class);
         assertNotNull(books);
@@ -85,8 +88,11 @@ public class BookRepositoryTest {
         input.getFilter().getFilters().add(f1);
         input.getFilter().getFilters().add(f2);
         input.setOptions(new JPASearchInput.JPASearchOptions());
-        input.getOptions().setSortKey("isbn");
-        input.getOptions().setSortDesc(true);
+        input.getOptions().setSortOptions(new ArrayList<>());
+        var sortOption = new JPASearchInput.JPASortOptions();
+        sortOption.setKey("isbn");
+        sortOption.setDesc(true);
+        input.getOptions().getSortOptions().add(sortOption);
         input.getOptions().setSelections(List.of("isbn"));
 
         var books = bookRepository.projectionWithSorting(input, Book.class, BookEntity.class);
