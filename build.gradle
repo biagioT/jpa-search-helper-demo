@@ -19,7 +19,7 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom 'com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:10.1.2'
+        mavenBom 'com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:10.2.1'
     }
 }
 
@@ -35,7 +35,6 @@ dependencies {
 
     // Netflix DGS / GraphQL
     implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter'
-    implementation 'com.graphql-java:java-dataloader:5.0.0'
 
     // Lombok
     compileOnly 'org.projectlombok:lombok'
