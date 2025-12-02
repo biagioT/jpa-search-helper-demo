@@ -1,4 +1,7 @@
 spring:
+  graphql:
+    graphiql:
+      enabled: true
   docker:
     compose:
       enabled: true
@@ -36,21 +39,26 @@ management:
     key-values:
       application: ${spring.application.name}
       env: local
-  otlp:
-    metrics:
-      export:
-        enabled: false
+  opentelemetry:
     tracing:
       export:
-        enabled: true
-      endpoint: "http://localhost:4317"
-      compression: gzip
-      timeout: 20s
-      transport: grpc
+        otlp:
+          endpoint: "http://localhost:4317"
+          compression: gzip
+          timeout: 20s
+          transport: grpc
   tracing:
-    enabled: true
+    export:
+      enabled: true
+      otlp:
+        enabled: true
     sampling:
       probability: 1
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+        step: 1m
   metrics:
     dgs-graphql:
       enabled: true
@@ -73,11 +81,6 @@ management:
         http:
           server:
             requests: true
-  prometheus:
-    metrics:
-      export:
-        enabled: true
-        step: 1m
   endpoints:
     access:
       default: none

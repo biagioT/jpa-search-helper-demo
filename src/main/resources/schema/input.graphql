@@ -1,4 +1,0 @@
-input Filter {
-    key: String
-    value: String
-}

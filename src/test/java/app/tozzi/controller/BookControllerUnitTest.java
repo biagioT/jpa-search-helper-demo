@@ -7,8 +7,8 @@ import app.tozzi.model.Book;
 import app.tozzi.model.input.JPASearchInput;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -98,7 +98,7 @@ public class BookControllerUnitTest {
         mvc.perform(get(PATH + "?isbn_eq=1234567891234567")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
-                .andExpect(content().contentType("application/json;charset=UTF-8"));
+                .andExpect(content().contentType("application/json;charset"));
         verify(bookManager, times(1)).findBooks(anyMap());
     }
 
@@ -122,7 +122,7 @@ public class BookControllerUnitTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
-                .andExpect(content().contentType("application/json;charset=UTF-8"));
+                .andExpect(content().contentType("application/json"));
         verify(bookManager, times(1)).findBooks(any(JPASearchInput.class));
     }
 

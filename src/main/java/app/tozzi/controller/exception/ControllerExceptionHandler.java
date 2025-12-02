@@ -65,9 +65,9 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_CONTENT)
     public ProblemDetail handleUnprocessableEntity(HttpMessageNotReadableException ex) {
-        var message = HttpStatus.UNPROCESSABLE_ENTITY.getReasonPhrase();
+        var message = HttpStatus.UNPROCESSABLE_CONTENT.getReasonPhrase();
         if (ex.getCause() instanceof InvalidFormatException ife) {
             message = message + ". Invalid value: " + ife.getValue();
 
@@ -75,7 +75,7 @@ public class ControllerExceptionHandler {
             var path = vie.getPath().stream().map(JsonMappingException.Reference::getFieldName).collect(Collectors.joining("."));
             message = message + ". " + path + ":" + iae.getMessage();
         }
-        return buildProblemDetail(HttpStatus.UNPROCESSABLE_ENTITY, message);
+        return buildProblemDetail(HttpStatus.UNPROCESSABLE_CONTENT, message);
     }
 
     private static ProblemDetail buildProblemDetail(HttpStatus httpStatus, String message) {
