@@ -6,7 +6,6 @@ import app.tozzi.repository.entity.BookEntity;
 import app.tozzi.util.BookUtils;
 import graphql.schema.DataFetchingFieldSelectionSet;
 import io.micrometer.observation.annotation.Observed;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -36,7 +35,7 @@ public class BookDataFetcher {
             filters = new ArrayList<>();
         }
 
-        var filterMap = filters.stream().collect(Collectors.toMap(Filter::getKey, Filter::getValue));
+        var filterMap = filters.stream().collect(Collectors.toMap(Filter::key, Filter::value));
         filterMap.put("selections", String.join(",", getSelections(selectionSet)));
 
         var mapList = bookRepository.projection(filterMap, Book.class, BookEntity.class);
@@ -50,10 +49,7 @@ public class BookDataFetcher {
                 .map(field -> field.getQualifiedName().replace("/", ".")).collect(Collectors.toSet());
     }
 
-    @Data
-    public static class Filter {
-        private String key;
-        private String value;
+    public record Filter(String key, String value) {
     }
 
 }
